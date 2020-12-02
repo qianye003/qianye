@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Layout } from 'antd';
+import {HashRouter} from "react-router-dom";
+import Router from "./route/index"
+import Nav from "./page/nav/Nav";
+import 'antd/dist/antd.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+const { Header, Content, Footer, Sider } = Layout;
+export default function App(){
+  return(
+    <Layout>
+      <HashRouter>
+        <Sider
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+          <div className="logo" />
+          <Nav/>
+        </Sider>
+        <Layout className="site-layout" style={{ marginLeft: 200 }}>
+          <Header className="site-layout-background" style={{ padding: 0 }} />
+          <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+            <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
+              <Router/>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        </Layout>
+      </HashRouter>
+    </Layout>
+)}
